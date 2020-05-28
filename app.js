@@ -1,11 +1,21 @@
 var express = require('express');
 var app = express();
-var server = require('http').createServer(app);
+// var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
+
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+	key: fs.readFileSync('key.pem'),
+	cert: fs.readFileSync('cert.pem')
+}
+
+https.createServer(options, app).listen(process.env.TRADE || 3001);
 
 connections = [];
 
-server.listen(process.env.TRADE || 3001);
+// server.listen(process.env.TRADE || 3001);
 console.log('Server rodando...');
 app.use(express.json())
 app.get('/', function (req, res) {
