@@ -32,8 +32,12 @@ app.get('/', function (req, res) {
 });
 
 app.post('/notifica', (req, res) => {
-	console.log(req.body)
 	io.sockets.emit('notificacao', req.body.data)
+	res.send('ok')
+})
+
+app.post('/valor', (req, res) => {
+	io.sockets.emit('valor', req.body.data)
 	res.send('ok')
 })
 

@@ -46,6 +46,11 @@
 				notifica(data.msg)
 			})
 
+			socket.on('valor', (data) => {
+				console.log(data)
+				document.getElementById('valor').innerHTML = data.valor
+			})
+
 		})
 
 
